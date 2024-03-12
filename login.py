@@ -39,8 +39,6 @@ class Login_system:
         btn_login=Button(login_frame,text="Log In", command=self.login,font=("Arial Rounded MT Bold",15),bg="#00B0F0",activebackground="#00B0F0",fg="white",activeforeground="white",cursor="hand2").place(x=60,y=400,width=250,height=35)
         
       
-        
-
     def login(self):
         con = sqlite3.connect(database='ims.db')
         cur = con.cursor()
@@ -53,18 +51,22 @@ class Login_system:
                 if user is None:
                     messagebox.showerror('Error', "Invalid username/password", parent=self.root)
                 else:
-                    if user[8] == self.var_utype.get(): 
-                        if self.var_utype.get() == "Employee":
-                            
-                            self.root.destroy()
-                            os.system("python empDashboard.py")
-                        elif self.var_utype.get() == "Admin":
-                            self.root.destroy()
-                            os.system("python adminDashboard.py")
+                    if user[7] == self.password.get():  
+                        if user[8] == self.var_utype.get(): 
+                            if self.var_utype.get() == "Employee":
+                                self.root.destroy()
+                                os.system("python empDashboard.py")
+                            elif self.var_utype.get() == "Admin":
+                                self.root.destroy()
+                                os.system("python adminDashboard.py")
+                        else:
+                            messagebox.showerror('Error', "Incorrect user type", parent=self.root)
                     else:
-                        messagebox.showerror('Error', "Incorrect user type", parent=self.root)
+                       
+                        messagebox.showerror('Error', "Incorrect password", parent=self.root)
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to: {str(ex)}")
+
 
 
 
