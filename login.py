@@ -1,6 +1,6 @@
-from tkinter import*
+from tkinter import *
 from PIL import ImageTk
-from tkinter import ttk,messagebox
+from tkinter import ttk, messagebox
 import sqlite3
 import os
 
@@ -26,16 +26,13 @@ class Login_system:
         txt_employee_id=Entry(login_frame,textvariable=self.employee_id,font=("times new roman",15),bg="#ECECEC").place(x=50,y=140,width=280)
 
         lbl_pass=Label(login_frame,text="Password",font=("Andalus",15),bg="white",fg="#767171").place(x=50,y=200)
-        txt_pass=Entry(login_frame,textvariable=self.password,font=("times new roman",15),bg="#ECECEC").place(x=50,y=240,width=280)
+        txt_pass=Entry(login_frame,textvariable=self.password,show="*",font=("times new roman",15),bg="#ECECEC").place(x=50,y=240,width=280)
 
         lbl_utype=Label(login_frame,text="User Type" , font=("Andalus",15),bg="white",fg="#767171").place(x=50,y=300)
         cmb_utype = ttk.Combobox(login_frame, textvariable=self.var_utype, values=("Select","Admin", "Employee"), state='readonly', justify=CENTER, font=("times new roman",15))
         cmb_utype.place(x=50,y=340,width=280)
         cmb_utype.current(0)
 
-
-        
-        
         btn_login=Button(login_frame,text="Log In", command=self.login,font=("Arial Rounded MT Bold",15),bg="#00B0F0",activebackground="#00B0F0",fg="white",activeforeground="white",cursor="hand2").place(x=60,y=400,width=250,height=35)
         
       
@@ -62,13 +59,9 @@ class Login_system:
                         else:
                             messagebox.showerror('Error', "Incorrect user type", parent=self.root)
                     else:
-                       
                         messagebox.showerror('Error', "Incorrect password", parent=self.root)
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to: {str(ex)}")
-
-
-
 
 if __name__ == "__main__":
     root=Tk()
